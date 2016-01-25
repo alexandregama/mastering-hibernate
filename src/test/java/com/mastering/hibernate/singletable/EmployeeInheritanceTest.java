@@ -37,5 +37,26 @@ public class EmployeeInheritanceTest {
 		
 		assertNotNull(employee.getId());
 	}
+
+	@Test
+	public void shouldSaveANewRegularEmployee() throws Exception {
+		Employee employee = new RegularEmployee(1500.0, 100.0);
+		employee.setName("Alex Gama");
+		
+		EmployeeDao dao = new EmployeeDao(em);
+		dao.save(employee);
+		
+		assertNotNull(employee.getId());
+	}
 	
+	@Test
+	public void shouldSaveANewContractEmployee() throws Exception {
+		Employee employee = new ContractEmployee(40.0, "Weekly");
+		employee.setName("Fernando Gama");
+		
+		EmployeeDao dao = new EmployeeDao(em);
+		dao.save(employee);
+		
+		assertNotNull(employee.getId());
+	}
 }
