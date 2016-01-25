@@ -1,4 +1,4 @@
-package com.mastering.hibernate.model;
+package com.mastering.hibernate.singletable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
