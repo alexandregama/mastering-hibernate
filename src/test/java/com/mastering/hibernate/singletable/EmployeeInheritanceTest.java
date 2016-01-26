@@ -59,4 +59,20 @@ public class EmployeeInheritanceTest {
 		
 		assertNotNull(employee.getId());
 	}
+	
+	@Test
+	public void shouldUpdateJustTheEmployeeName() throws Exception {
+		Employee employee = new ContractEmployee(40.0, "Weekly");
+		employee.setName("Gustavo");
+		
+		EmployeeDao dao = new EmployeeDao(em);
+		dao.save(employee);
+		
+		employee.setName("Antonio");
+		dao.update(employee);
+		
+		Employee employeeUpdated = dao.findBy(employee.getId());
+		
+		assertEquals("Antonio", employeeUpdated.getName());
+	}
 }
