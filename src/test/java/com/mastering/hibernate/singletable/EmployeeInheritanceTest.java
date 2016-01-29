@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.mastering.hibernate.JPAUtil;
-import com.mastering.hibernate.dao.EmployeeDao;
+import com.mastering.hibernate.dao.HibernateEmployeeDao;
 
 public class EmployeeInheritanceTest {
 
@@ -32,7 +32,7 @@ public class EmployeeInheritanceTest {
 		Employee employee = new Employee();
 		employee.setName("Alexandre Gama");
 		
-		EmployeeDao dao = new EmployeeDao(em);
+		HibernateEmployeeDao dao = new HibernateEmployeeDao(em);
 		dao.save(employee);
 		
 		assertNotNull(employee.getId());
@@ -43,7 +43,7 @@ public class EmployeeInheritanceTest {
 		Employee employee = new RegularEmployee(1500.0, 100.0);
 		employee.setName("Alex Gama");
 		
-		EmployeeDao dao = new EmployeeDao(em);
+		HibernateEmployeeDao dao = new HibernateEmployeeDao(em);
 		dao.save(employee);
 		
 		assertNotNull(employee.getId());
@@ -54,7 +54,7 @@ public class EmployeeInheritanceTest {
 		Employee employee = new ContractEmployee(40.0, "Weekly");
 		employee.setName("Fernando Gama");
 		
-		EmployeeDao dao = new EmployeeDao(em);
+		HibernateEmployeeDao dao = new HibernateEmployeeDao(em);
 		dao.save(employee);
 		
 		assertNotNull(employee.getId());
@@ -65,7 +65,7 @@ public class EmployeeInheritanceTest {
 		Employee employee = new ContractEmployee(40.0, "Weekly");
 		employee.setName("Gustavo");
 		
-		EmployeeDao dao = new EmployeeDao(em);
+		HibernateEmployeeDao dao = new HibernateEmployeeDao(em);
 		dao.save(employee);
 		
 		employee.setName("Antonio");
@@ -75,4 +75,5 @@ public class EmployeeInheritanceTest {
 		
 		assertEquals("Antonio", employeeUpdated.getName());
 	}
+	
 }
