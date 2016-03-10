@@ -5,20 +5,26 @@ import javax.persistence.Query;
 
 import com.mastering.hibernate.singletable.Employee;
 
-public class EmployeeDao {
+public class HibernateEmployeeDao {
 
 	private EntityManager em;
 
-	public EmployeeDao(EntityManager em) {
+	public HibernateEmployeeDao(EntityManager em) {
 		this.em = em;
 	}
 
 	public void save(Employee employee) {
 		em.persist(employee);
 	}
-
+	
 	public void update(Employee employee) {
-		String jpql = "update Employee set name = :name where id = :id";
+		String jpql = 
+				  "update "
+				+ "		Employee "
+				+ "set "
+				+ "		name = :name "
+				+ "where "
+				+ "		id = :id";
 		Query query = em.createQuery(jpql);
 		query.setParameter("id", employee.getId());
 		query.setParameter("name", employee.getName());
@@ -29,5 +35,6 @@ public class EmployeeDao {
 	public Employee findBy(Long id) {
 		return em.find(Employee.class, id);
 	}
+
 
 }
