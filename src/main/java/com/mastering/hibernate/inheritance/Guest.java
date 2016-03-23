@@ -14,6 +14,13 @@ public class Guest extends User {
 	@Deprecated //Hibernate eyes only
 	Guest() {
 	}
+	
+	public Guest(String name, String nickname) {
+		super(name);
+		this.nickname = nickname;
+	}
+
+
 
 	public String getNickname() {
 		return nickname;

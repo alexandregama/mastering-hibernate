@@ -14,6 +14,13 @@ public class Host extends User {
 	@Deprecated //Hibernate eyes only
 	Host() {
 	}
+	
+	public Host(String name, String address) {
+		super(name);
+		this.address = address;
+	}
+
+
 
 	public String getAddress() {
 		return address;
