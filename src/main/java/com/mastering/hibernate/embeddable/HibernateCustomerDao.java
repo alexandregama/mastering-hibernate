@@ -1,7 +1,10 @@
 package com.mastering.hibernate.embeddable;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 public class HibernateCustomerDao {
 
@@ -31,6 +34,14 @@ public class HibernateCustomerDao {
 		query.setParameter("street", employee.getAddress().getStreet());
 		
 		query.executeUpdate();
+	}
+
+	public List<Customer> findByNameContainingSomeCaseInsensitiveWord(String name) {
+		String jpql = "select c from Customer c where c.name like :name";
+		TypedQuery<Customer> query = manager.createQuery(jpql, Customer.class);
+		query.setParameter("name", "%" + name + "%");
+		
+		return query.getResultList();
 	}
 
 }
