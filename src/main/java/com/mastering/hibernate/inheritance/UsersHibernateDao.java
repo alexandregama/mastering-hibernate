@@ -43,6 +43,27 @@ public class UsersHibernateDao {
 		return guests;
 	}
 	
+	public Guest findGuestUsingGuestObjectBy(Long id) {
+		TypedQuery<Guest> query = manager.createQuery("select g from Guest g where g.id = :id", Guest.class);
+		query.setParameter("id", id);
+		
+		return query.getSingleResult();
+	}
+	
+	public Host findHostUsingHostObjectByIts(Long id) {
+		TypedQuery<Host> query = manager.createQuery("select h from Host h where h.id = :id", Host.class);
+		query.setParameter("id", id);
+		
+		return query.getSingleResult();
+	}
+	
+	public User findUserByIts(Long id) {
+		TypedQuery<User> query = manager.createQuery("select u from User u where u.id = :id", User.class);
+		query.setParameter("id", id);
+		
+		return query.getSingleResult();
+	}
+	
 	public List<User> findAllUsers() {
 		TypedQuery<User> query = manager.createQuery("select u from User u", User.class);
 		

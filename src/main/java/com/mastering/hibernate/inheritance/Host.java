@@ -20,8 +20,6 @@ public class Host extends User {
 		this.address = address;
 	}
 
-
-
 	public String getAddress() {
 		return address;
 	}

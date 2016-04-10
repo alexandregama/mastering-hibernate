@@ -65,6 +65,7 @@ public class UsersHibernateDaoTest {
 		
 		assertTrue(guest.isPresent());
 		assertEquals("Gustavo", guest.get().getName());
+		assertEquals("gusta", guest.get().getNickname());
 	}
 	
 	@Test
@@ -105,6 +106,41 @@ public class UsersHibernateDaoTest {
 		assertFalse(Host.class.isAssignableFrom(userList.get(2).getClass()));
 		assertFalse(Guest.class.isAssignableFrom(userList.get(2).getClass()));
 	}
+	
+	@Test
+	public void shouldTryToRetriveAGuestUsingGuestObject() throws Exception {
+		Guest alexandre = new Guest("Alexandre", "gaminha");
+		
+		users.save(alexandre);
+		
+		Guest userFound = users.findGuestUsingGuestObjectBy(alexandre.getId());
+		
+		assertEquals("Alexandre", userFound.getName());
+	}
+	
+	@Test
+	public void shouldTryToRetrieveAHosterUsingHosterObject() throws Exception {
+		Host ronery = new Host("Ronery", "Av Paulista");
+		
+		users.save(ronery);
+		
+		Host hostFound = users.findHostUsingHostObjectByIts(ronery.getId());
+		
+		assertEquals("Ronery", hostFound.getName());
+		assertEquals("Av Paulista", hostFound.getAddress());
+	}
+	
+	@Test
+	public void shouldTryToRetrieveAUserUsingUserObject() throws Exception {
+		User user = new User("Alexandre");
+		
+		users.save(user);
+		
+		User userFound = users.findUserByIts(user.getId());
+		
+		assertEquals("Alexandre", userFound.getName());
+	}
+	
 	
 	@After
 	public void setDown() {
