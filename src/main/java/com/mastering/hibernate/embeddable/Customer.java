@@ -23,6 +23,9 @@ public class Customer implements Serializable {
 	@Column(name = "name", length = 50)
 	private String name;
 	
+	@Column(name = "lastname", length = 50)
+	private String lastname;
+	
 	@Embedded
 	private Address address = new Address();
 
@@ -48,5 +51,13 @@ public class Customer implements Serializable {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 }

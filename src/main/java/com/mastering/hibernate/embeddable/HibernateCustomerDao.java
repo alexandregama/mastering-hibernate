@@ -44,4 +44,33 @@ public class HibernateCustomerDao {
 		return query.getResultList();
 	}
 
+	public List<Customer> findAllSortingByItsName() {
+		TypedQuery<Customer> query = manager.createQuery("select c from Customer c order by c.name", Customer.class);
+		
+		return query.getResultList();
+	}
+
+	public List<Customer> findAndSortingByItsNameAndLastNameUsing(String name) {
+		String jpql = ""
+				+ "select c from Customer c "
+				+ "where c.name = :name "
+				+ "order by c.name, c.lastname";
+		TypedQuery<Customer> query = manager.createQuery(jpql, Customer.class);
+		query.setParameter("name", name);
+		
+		return query.getResultList();
+	}
+
+	public List<Customer> findAndSortingByItsNameAndLastNameInDescendentWayUsing(String name) {
+		String jpql = ""
+				+ "select c from Customer c "
+				+ "where c.name = :name "
+				+ "order by c.name, c.lastname desc";
+		
+		TypedQuery<Customer> query = manager.createQuery(jpql, Customer.class);
+		query.setParameter("name", name);
+		
+		return query.getResultList();
+	}
+
 }
